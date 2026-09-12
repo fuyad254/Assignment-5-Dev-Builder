@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .gradient-btn {
+    background: linear-gradient(
+      to right,
+      #ff5722,
+      #d81b7e,
+      #7c3aed
+    );
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      to right,
+      #ff5722,
+      #d81b7e,
+      #7c3aed
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}

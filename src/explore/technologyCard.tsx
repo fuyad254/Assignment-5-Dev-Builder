@@ -2,27 +2,28 @@ import { MdStarRate } from "react-icons/md";
 import type Itechnologies from "../type";
 import { useState, type Dispatch, type SetStateAction } from "react";
 
-interface technologyCardProps{
+interface technologyCardProps {
   technology: Itechnologies;
   addStack: Itechnologies[];
   setAddStack: Dispatch<SetStateAction<Itechnologies[]>>;
 }
 
-export function TechnologyCard({ technology,addStack, setAddStack }: technologyCardProps) {
+export function TechnologyCard({
+  technology,
+  addStack,
+  setAddStack,
+}: technologyCardProps) {
+  const [isSelected, setIsSelected] = useState(false);
 
-  const [isSelected, setIsSelected]= useState(false)
+  const handleEvent = () => {
+    setIsSelected(true);
 
-
-  const handleEvent= ()=>{
-    setIsSelected(true)
-
-    setAddStack([...addStack,technology])
-  }
+    setAddStack([...addStack, technology]);
+  };
   return (
     <>
-      
-        <div
-        className="max-w-87.5 h-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5"
+      <div
+        className={` ${isSelected === false ? `max-w-87.5 h-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5` : `max-w-87.5 h-auto rounded-2xl  bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5 border-2 border-[#D81B7E] `}`}
       >
         <div className="flex items-start justify-between">
           <img className="h-8 w-8 object-contain" src={technology.icon} />
@@ -32,7 +33,6 @@ export function TechnologyCard({ technology,addStack, setAddStack }: technologyC
           </span>
         </div>
 
-        
         <div className="mt-5">
           <h2 className="text-[20px] font-bold leading-6 text-slate-900">
             {technology.name}
@@ -60,18 +60,20 @@ export function TechnologyCard({ technology,addStack, setAddStack }: technologyC
           </div>
         </div>
 
-        
         <button
           onClick={handleEvent}
-          className={`mt-4 w-full rounded-md bg-[#080D1C] py-2.5 text-xs font-medium ${isSelected===false? `text-white   bg-linear-to-r from-[#FF5722] via-[#D81B7E] to-[#7C3AED] px-6 cursor-pointer`:`bg-[#080D1C] disabled:bg-gray-300`  }`}
           disabled={isSelected}
-  
+          className={`mt-4 w-full rounded-md py-2.5 text-xs font-medium
+          ${
+            isSelected
+              ? "bg-gray-300 text-gray-500  cursor-not-allowed"
+               : "gradient-btn text-white px-6     cursor-pointer"
+          }
+          `}
         >
-          {isSelected===true? "Added" :"Add to Stack"}
+          {isSelected === true ? "✓ Added to Stack" : "Add to Stack"}
         </button>
-        
       </div>
-      
     </>
   );
 }

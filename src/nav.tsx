@@ -17,7 +17,7 @@ export function Nav() {
           </ul>
           <div className='flex gap-6'>
             <button className='text-slate-700 cursor-pointer '>Sign in</button>
-            <button className='bg-linear-to-r from-[#FF5722] via-[#D81B7E] to-[#7C3AED] px-6 py-2 rounded-full text-white font-semibold cursor-pointer '>Sign Up</button>
+            <button className='gradient-btn px-6 py-2 rounded-full text-white font-semibold cursor-pointer '>Sign Up</button>
           </div>
         </div>
         
