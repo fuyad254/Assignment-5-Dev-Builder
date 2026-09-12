@@ -56,14 +56,7 @@ export function Selected({
   setAddStack,
 }: ItechnologiesProps) {
 
-  // Remove one technology
-  const handleRemove = (name: string) => {
-    setAddStack((prev) =>
-      prev.filter((item) => item.name !== name)
-    );
-  };
-
-  // Remove all technologies
+  
   const handleRemoveAll = () => {
     setAddStack([]);
   };
@@ -71,7 +64,7 @@ export function Selected({
   return (
     <div className="w-full rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 
-      {/* Header */}
+      
       <div>
         <h2 className="text-[17px] font-bold text-slate-900">
           Your Stack
@@ -80,16 +73,14 @@ export function Selected({
         <p className="mt-1 text-[13px] text-slate-400">
           {addStack.length === 0
             ? "No technologies yet."
-            : `${addStack.length} Technology${
-                addStack.length > 1 ? "ies" : ""
-              } Selected`}
+            : `${addStack.length} Technology Selected`}
         </p>
       </div>
 
-      {/* Empty State */}
+      
       {addStack.length === 0 ? (
 
-        <div className="mt-4 flex h-[69px] items-center justify-center rounded-xl border border-dashed border-slate-200">
+        <div className="mt-4 flex h-17.25 items-center justify-center rounded-xl border border-dashed border-slate-200">
           <p className="text-[13px] text-slate-400">
             Your stack is empty.
           </p>
@@ -97,7 +88,7 @@ export function Selected({
 
       ) : (
 
-        /* Selected Technologies */
+        
         <div className="mt-4">
 
           <div className="space-y-2">
@@ -105,7 +96,9 @@ export function Selected({
               <SelectedCard
                 key={stack.name}
                 stack={stack}
-                onRemove={() => handleRemove(stack.name)}
+                addStack={addStack}
+                setAddStack={setAddStack}
+                
               />
             ))}
           </div>

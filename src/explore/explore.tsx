@@ -22,7 +22,7 @@ export function Explore({ technologiesPromis }:ItechnologiesProps ) {
           <div className=" col-span-9 grid grid-cols-3 gap-3">
             <Technologies technologiesPromis={technologiesPromis} addStack={addStack}setAddStack={setAddStack}></Technologies>
             </div>
-          <div className="bg-green-300 col-span-3">
+          <div className=" col-span-3 mt-5">
             <Selected addStack={addStack}setAddStack={setAddStack}></Selected>
             </div>
         </div>

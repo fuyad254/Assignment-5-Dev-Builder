@@ -39,19 +39,26 @@
 // }
 
 
+import type { Dispatch, SetStateAction } from "react";
 import type Itechnologies from "../type";
 
 interface SelectedCardProps {
   stack: Itechnologies;
-  onRemove: () => void;
+  addStack: Itechnologies[];
+  setAddStack: Dispatch<SetStateAction<Itechnologies[]>>;
 }
 
 export function SelectedCard({
-  stack,
-  onRemove,
+  stack,addStack, setAddStack
 }: SelectedCardProps) {
+
+    const handleEventRemoveTechnology= (stack:Itechnologies)=>{
+        const stayTechnology= addStack.filter((technology)=>technology.name !=stack.name)
+        setAddStack(stayTechnology)
+    }
+
   return (
-    <div className="flex h-[63px] w-full items-center justify-between rounded-lg border border-slate-200 bg-white px-3">
+    <div className="flex h-17.75 w-full items-center justify-between rounded-lg border border-slate-200 bg-white px-3">
 
       {/* Left side */}
       <div className="flex items-center gap-3">
@@ -74,11 +81,11 @@ export function SelectedCard({
 
       </div>
 
-      {/* Remove button */}
+      
       <button
-        onClick={onRemove}
+        onClick={()=>handleEventRemoveTechnology(stack)}
         className="cursor-pointer text-[27px] font-light leading-none text-slate-400 transition-colors hover:text-slate-600"
-        aria-label={`Remove ${stack.name}`}
+        
       >
         ×
       </button>
