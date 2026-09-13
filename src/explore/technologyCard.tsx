@@ -15,7 +15,7 @@ export function TechnologyCard({
   setAddStack,
 }: technologyCardProps) {
   
-  const isSelected = addStack.find((item) => item.name === technology.name);
+  const isSelected = addStack.some((item) => item.name === technology.name);
 
   const handleEvent = () => {
     setAddStack([...addStack, technology]);
@@ -37,7 +37,7 @@ export function TechnologyCard({
     <>
       <div
         className={` ${
-          isSelected === false
+          !isSelected
             ? `max-w-87.5 h-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5`
             : `max-w-87.5 h-auto rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5 border-2 border-[#D81B7E]`
         }`}
