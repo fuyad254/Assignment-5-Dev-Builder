@@ -1,50 +1,8 @@
-// import type { Dispatch, SetStateAction } from "react";
-// import type Itechnologies from "../type";
-// import { SelectedCard } from "./selectedCard";
-
-// interface ItechnologiesProps  {
-  
-//   addStack:Itechnologies[];
-//   setAddStack:Dispatch<SetStateAction<Itechnologies[]>>
-// };
-// export function Selected({addStack, setAddStack}:ItechnologiesProps) {
-//     console.log(setAddStack);
-//     return (
-//         <>
-//         <div className="w-full  rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      
-//       <div>
-//         <h2 className="text-[17px] font-bold text-slate-900">
-//           Your Stack
-//         </h2>
-
-//         <p className="mt-1 text-[13px] text-slate-400">
-//           No technologies yet.
-//         </p>
-//       </div>
-
-      
-//       <div className="mt-4 flex h-17.25 items-center justify-center rounded-xl border border-dashed border-slate-200">
-//         <p className="text-[13px] text-slate-400">
-//            Your stack is empty.
-//         </p>
-        
-//       </div>
-//     </div>
-        
-//         {
-//            addStack.map((stack,ind)=>{
-//             return <SelectedCard stack={stack} key={ind}></SelectedCard>
-//           })
-//         }
-//         </>
-//     )
-// }
-
 
 import type { Dispatch, SetStateAction } from "react";
 import type Itechnologies from "../type";
 import { SelectedCard } from "./selectedCard";
+import { Bounce, toast } from "react-toastify";
 
 interface ItechnologiesProps {
   addStack: Itechnologies[];
@@ -59,6 +17,18 @@ export function Selected({
   
   const handleRemoveAll = () => {
     setAddStack([]);
+
+    toast.info(`Removed all stack`, {
+position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "light",
+transition: Bounce,
+});
   };
 
   return (
