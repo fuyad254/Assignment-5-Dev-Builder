@@ -1,8 +1,7 @@
 import { MdStarRate } from "react-icons/md";
 import type Itechnologies from "../type";
-import { useState, type Dispatch, type SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { Bounce, toast } from "react-toastify";
-
 
 interface technologyCardProps {
   technology: Itechnologies;
@@ -15,32 +14,36 @@ export function TechnologyCard({
   addStack,
   setAddStack,
 }: technologyCardProps) {
-  const [isSelected, setIsSelected] = useState(false);
+  
+  const isSelected = addStack.find((item) => item.name === technology.name);
 
   const handleEvent = () => {
-    setIsSelected(true);
-
     setAddStack([...addStack, technology]);
 
     toast.success(`${technology.name} added to stack successfully`, {
-position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: false,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-theme: "light",
-transition: Bounce,
-});
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
+
   return (
     <>
       <div
-        className={` ${isSelected === false ? `max-w-87.5 h-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5` : `max-w-87.5 h-auto rounded-2xl  bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5 border-2 border-[#D81B7E] `}`}
+        className={` ${
+          isSelected === false
+            ? `max-w-87.5 h-auto rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5`
+            : `max-w-87.5 h-auto rounded-2xl bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg mt-5 border-2 border-[#D81B7E]`
+        }`}
       >
         <div className="flex items-start justify-between">
-          <img className="h-8 w-8 object-contain" src={technology.icon} />
+          <img className="h-8 w-8 object-contain" src={technology.icon} alt={technology.name} />
 
           <span className="rounded-full border border-sky-100 bg-sky-50 px-3 py-1 text-xs font-medium text-sky-500">
             {technology.badge}
@@ -77,15 +80,13 @@ transition: Bounce,
         <button
           onClick={handleEvent}
           disabled={isSelected}
-          className={`mt-4 w-full rounded-md py-2.5 text-xs font-medium
-          ${
+          className={`mt-4 w-full rounded-md py-2.5 text-xs font-medium ${
             isSelected
-              ? "bg-gray-300 text-gray-500  cursor-not-allowed"
-               : "gradient-btn text-white px-6     cursor-pointer"
-          }
-          `}
+              ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+              : "gradient-btn text-white px-6 cursor-pointer"
+          }`}
         >
-          {isSelected === true ? "✓ Added to Stack" : "Add to Stack"}
+          {isSelected ? "✓ Added to Stack" : "Add to Stack"}
         </button>
       </div>
     </>
